@@ -11,23 +11,23 @@ exp_id = sys.argv[3]
 try:
 
 
-        command1 = 'lsof -ti:8333 | xargs kill -9'
+        # command1 = 'lsof -ti:8333 | xargs kill -9'
+        command1 = 'fuser -n tcp 8333'
 
 	# start abr algorithm server
 	if abr_algo == 'RL':
-		command = 'exec /usr/bin/python ../rl_server/rl_server_no_training.py ' + exp_id
+		command = 'exec  ~/anaconda3/envs/py2/bin/python2.7 ../rl_server/rl_server_no_training.py ' + exp_id
 	elif abr_algo == 'fastMPC':
-		command = 'exec /usr/bin/python ../rl_server/mpc_server.py ' + exp_id
+		command = 'exec  ~/anaconda3/envs/py2/bin/python2.7 ../rl_server/mpc_server.py ' + exp_id
 	elif abr_algo == 'robustMPC':
-		command = 'exec /usr/bin/python ../rl_server/robust_mpc_server.py ' + exp_id
+		command = 'exec  ~/anaconda3/envs/py2/bin/python2.7 ../rl_server/robust_mpc_server.py ' + exp_id
 	else:
-		command = 'exec /usr/bin/python ../rl_server/simple_server.py ' + abr_algo + ' ' + exp_id
+		command = 'exec  ~/anaconda3/envs/py2/bin/python2.7 ../rl_server/simple_server.py ' + abr_algo + ' ' + exp_id
 	
         #Following 4 lines added to address frequent "ADDR ALREADY IN USE" errors
         proc1 = subprocess.Popen(command1, shell=True)
         sleep(1)
         proc1.kill()
-        
         proc = subprocess.Popen(command, shell=True)
 	sleep(2)
         

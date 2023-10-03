@@ -2,7 +2,7 @@ import os
 
 start_dir = os.getcwd()
 
-# mahimahi
+# # mahimahi
 os.system("sudo sysctl -w net.ipv4.ip_forward=1")
 os.system("sudo add-apt-repository -y ppa:keithw/mahimahi")
 os.system("sudo apt-get -y update")
@@ -51,6 +51,8 @@ os.system("mkdir cooked_traces")
 os.system("mkdir rl_server/results")
 os.system("mkdir run_exp/results")
 os.system("mkdir real_exp/results")
+os.system("mkdir real_exp/mmlogs")
+os.system("mkdir real_exp/pylogs")
 
 # need to copy the trace and pre-trained NN model
 print "Need to put trace files in 'pensieve/cooked_traces'."
