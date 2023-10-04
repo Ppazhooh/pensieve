@@ -9,8 +9,13 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException
 from pyvirtualdisplay import Display
 from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
+
+client_up_time = int(sys.argv[1])
 display = Display(visible=0, size=(800,600))
 display.start()
 
@@ -23,13 +28,23 @@ driver=webdriver.Chrome(chrome_driver, chrome_options=options)
 url = 'http://' + '100.64.0.1/myindex_' + 'RL' + '.html'
 driver.get(url)
 
+# Wait up to 10 seconds for the videoPlayer element to be present
+video = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.ID, "videoPlayer"))
+)
+
+# Play the video by calling the JavaScript play method
+# driver.execute_script("arguments[0].play();", video)
+video.click()
+# video.send_keys(Keys.SPACE)
+
 page_title = driver.title
 
 # Print the title
 print("Page Title:", page_title)
 
 
-sleep(1000)
+sleep(client_up_time)
 	
 driver.quit()
 display.stop()
