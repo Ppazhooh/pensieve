@@ -33,10 +33,7 @@ video = WebDriverWait(driver, 10).until(
     EC.presence_of_element_located((By.ID, "videoPlayer"))
 )
 
-# Play the video by calling the JavaScript play method
-# driver.execute_script("arguments[0].play();", video)
 video.click()
-# video.send_keys(Keys.SPACE)
 
 page_title = driver.title
 
