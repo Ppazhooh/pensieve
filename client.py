@@ -25,7 +25,9 @@ chrome_driver = '../abr_browser_dir/chromedriver'
 options.add_argument('--ignore-certificate-errors')
 driver=webdriver.Chrome(chrome_driver, chrome_options=options)
 
-url = 'http://' + '100.64.0.1/myindex_' + 'RL' + '.html'
+
+scheme = str(sys.argv[2])
+url = 'http://' + '100.64.0.1/myindex_' + scheme + '.html'
 driver.get(url)
 
 # Wait up to 10 seconds for the videoPlayer element to be present

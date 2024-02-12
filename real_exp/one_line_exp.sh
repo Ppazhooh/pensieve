@@ -1,14 +1,14 @@
 rm mmlogs/*
 rm results/*
-downlink="TMobile-UMTS-driving.down"
-uplink="TMobile-UMTS-driving.up"
-scheme="RL"
+downlink=$2
+uplink=$3
+scheme=$1
 server_up_time=4000
-client_up_time=320
+client_up_time=$4
 constant=10
-python real_world_run_video.py $scheme $server_up_time 1 &
+~/anaconda3/envs/py2/bin/python2.7  real_world_run_video.py $scheme $server_up_time 1 &
 sleep 5
-mm-delay 5 mm-link ../mahimahi_traces/$uplink ../mahimahi_traces/$downlink --downlink-log=mmlogs/$downlink.log ~/anaconda3/envs/py2/bin/python2.7 ../client.py $client_up_time &
+mm-delay $5 mm-link /d1/mahakcont/traces/$uplink /d1/mahakcont/traces/$downlink --downlink-log=mmlogs/$downlink.log --uplink-queue=droptail --uplink-queue-args="packets=$6" --downlink-queue=droptail --downlink-queue-args="packets=$6" ~/anaconda3/envs/py2/bin/python2.7 ../client.py $client_up_time $scheme &
 result=$((constant + client_up_time))
 sleep $result
 killall -9 mm-link
