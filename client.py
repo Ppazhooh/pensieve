@@ -27,6 +27,8 @@ driver=webdriver.Chrome(chrome_driver, chrome_options=options)
 
 
 scheme = str(sys.argv[2])
+# if scheme == 'robustMPC':
+#     scheme = ''
 url = 'http://' + '100.64.0.1/myindex_' + scheme + '.html'
 driver.get(url)
 
