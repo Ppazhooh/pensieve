@@ -31,3 +31,4 @@ conda activate py2
 cd $main_directory
 cd ../
 ~/anaconda3/envs/py2/bin/python2.7 setup.py
+sudo apt install gconf2
